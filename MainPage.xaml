@@ -1,0 +1,61 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="DataVisualizationOnWindowsPhone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    xmlns:local="clr-namespace:DataVisualizationOnWindowsPhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    shell:SystemTray.IsVisible="False">
+
+    <phone:PhoneApplicationPage.Resources>
+        <!-- Data -->
+        <local:Activities x:Key="Activities"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock
+            Grid.Row="0"
+            Text="DataVisualizationOnWindowsPhone"
+            Style="{StaticResource PhoneTextNormalStyle}"/>
+
+        <Grid Grid.Row="1">
+
+            <!-- Chart sample -->
+            <charting:Chart
+                x:Name="myChart"
+                Title="static chart"
+                LegendTitle="legend"
+                Style="{StaticResource PhoneChartStyle}"
+                Template="{StaticResource PhoneChartPortraitTemplate}">
+
+                <!-- Series -->
+                <charting:PieSeries
+                    ItemsSource="{StaticResource Activities}"
+                    DependentValuePath="Count"
+                    IndependentValuePath="Activity">
+                    <charting:PieSeries.LegendItemStyle>
+                        <Style TargetType="charting:LegendItem">
+                            <Setter Property="Margin" Value="5 0 5 0"/>
+                        </Style>
+                    </charting:PieSeries.LegendItemStyle>
+                </charting:PieSeries>
+
+            </charting:Chart>
+        </Grid>
+    </Grid>
+    
+</phone:PhoneApplicationPage>
